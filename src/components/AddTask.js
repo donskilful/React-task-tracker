@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { DateTimePickerComponent } from "@syncfusion/ej2-react-calendars";
 
-const AddTask = ({onAdd}) => {
+const AddTask = ({ onAdd }) => {
   const [text, setText] = useState("");
   const [day, setDay] = useState("");
   const [reminder, setReminder] = useState(false);
@@ -8,7 +9,7 @@ const AddTask = ({onAdd}) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (!text || !day) {
+    if (!text) {
       alert("Please fill in all fields");
       return;
     }
@@ -32,13 +33,25 @@ const AddTask = ({onAdd}) => {
       </div>
       <div className="form-control">
         <label>Day & Time</label>
+        <DateTimePickerComponent
+          placeholder="Pick a day & time"
+          value={day}
+          format="dd-MMM-yy HH:mm a"
+          step={1}
+          onChange={(e) => setDay(e.target.value)}
+        />
+      </div>
+
+      {/* <div className="form-control">
+        <label>Day & Time</label>
         <input
           type="text"
           placeholder="Add Day & Time"
           value={day}
           onChange={(e) => setDay(e.target.value)}
         />
-      </div>
+      </div> */}
+
       <div className="form-control form-control-check">
         <label>Set Reminder</label>
         <input
